@@ -1,0 +1,23 @@
+this.addEditUserForm = this.builder.group({
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
+            title: ['', Validators.required],
+            email: ['', Validators.required],
+            password: ['', Validators.required],
+            confirmPass: ['', Validators.required]
+        },{validator: this.checkIfMatchingPasswords('password', 'confirmPass')});
+
+
+
+checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
+          return (group: FormGroup) => {
+            let passwordInput = group.controls[passwordKey],
+                passwordConfirmationInput = group.controls[passwordConfirmationKey];
+            if (passwordInput.value !== passwordConfirmationInput.value) {
+              return passwordConfirmationInput.setErrors({notEquivalent: true})
+            }
+            else {
+                return passwordConfirmationInput.setErrors(null);
+            }
+          }
+        }

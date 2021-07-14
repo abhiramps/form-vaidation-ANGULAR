@@ -1,0 +1,85 @@
+<div>
+    <form action="" [formGroup]="Forms" (ngSubmit)="onSubmit()">
+        <div class="name">
+            <label for="">name :</label>
+            <input type="text" formControlName="name" name="name" id="">
+        </div>
+        <!-- -----------------name------------------------- -->
+        <span *ngIf="Forms.get('name')?.touched && Forms.get('name')?.errors?.required">
+            <label [style.color]="'red'">name is invalid</label>
+        </span>
+        <span *ngIf="Forms.get('name')?.errors?.pattern?.actualValue">
+            <label [style.color]="'red'">name must be charactors</label>
+        </span>
+        <!-- <span *ngIf="Forms.get('name')?.errors?.pattern?.actualValue=6">
+            <label  [style.color]="'red'">name must be atleast 6 charactors</label>
+        </span> -->
+
+        <!-- -----------------phone------------------------- -->
+        <div class="phone">
+            <label for="">phone :</label>
+            <input type="number" formControlName="phone" name="phone">
+        </div>
+        <span *ngIf="Forms.get('phone')?.errors?.pattern?.actualValue">
+            <label [style.color]="'red'">enter excat 10 digit number</label>
+        </span>
+        <span *ngIf="Forms.get('phone')?.touched && this.Forms.get('phone')?.errors?.required">
+            <label [style.color]="'red'">phone is invalid</label>
+        </span>
+
+        <!-- -----------------email------------------------- -->
+        <div class="email">
+            <label for="">Email :</label>
+            <input type="email" formControlName="email" name="email">
+        </div>
+        <span *ngIf="Forms.get('email')?.touched && this.Forms.get('email')?.errors?.required">
+            <label [style.color]="'red'">Email is invalid</label>
+        </span>
+        <label [style.color]="'red'" *ngIf="Forms.get('email')?.errors?.pattern?.actualValue">email pattern is
+            wrong</label>
+
+        <!-- -----------------password------------------------- -->
+        <div class="password">
+            <label for="">password :</label>
+            <input type="password" formControlName="password" name="password">
+        </div>
+        <span *ngIf="Forms.get('password')?.touched && this.Forms.get('password')?.errors?.required">
+            <label [style.color]="'red'">password is invalid</label>
+        </span>
+        <label [style.color]="'red'" *ngIf="Forms.get('password')?.errors?.pattern?.actualValue">password pattern is
+        wrong</label>
+
+        <!-- -----------------confirm  password------------------------- -->
+        <div class="confirm_password">
+            <label for=""> confirm password :</label>
+            <input type="password" formControlName="confirmPass" name="confirmPass">
+        </div>
+        <span *ngIf="Forms.get('confirmPass')?.touched && this.Forms.get('confirmPass')?.errors?.required">
+            <label [style.color]="'red'">password is invalid</label>
+        </span>
+
+        <label [style.color]="'red'" *ngIf="match">password mismatch</label>
+
+        <!-- -----------------message------------------------- -->
+        <div class="message">
+            <label for="">message :</label>
+            <input type="text" formControlName="message" name="message">
+        </div>
+        <span *ngIf="Forms.get('message')?.touched && this.Forms.get('message')?.errors?.required">
+            <label [style.color]="'red'">message is invalid</label>
+        </span>
+
+        <!-- -----------------submit------------------------- -->
+        <div class="submit">
+            <button>submit form</button>
+        </div>
+    </form>
+
+    <div class="data">
+        <!-- <app-data></app-data> -->
+    </div>
+
+    <div>
+       <a routerLink="/data">form data</a>
+    </div>
+</div>
